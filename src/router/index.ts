@@ -17,7 +17,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'about',
     component: () => import('../views/AboutView.vue'),
     meta: {
-      layout: BlankLayoutVue
+      layout: DefaultLayoutVue
+      // layout: BlankLayoutVue
     }
   }
 ]

@@ -1,34 +1,59 @@
 <template>
-    <v-card>
-        <v-layout>
-            <v-navigation-drawer v-model="drawer" temporary>
-                <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
-                    title="John Leider"></v-list-item>
+    <div>
+        <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
+        <v-app-bar color="primary" prominent>
+            <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-                <v-divider></v-divider>
+            <v-toolbar-title>My files</v-toolbar-title>
 
-                <v-list density="compact" nav>
-                    <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-                    <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
-                </v-list>
-            </v-navigation-drawer>
-            <v-main style="height: 250px">
-                <div class="d-flex justify-center align-center h-100">
-                    <v-btn color="primary" @click.stop="drawer = !drawer">
-                        Toggle
-                    </v-btn>
-                </div>
-            </v-main>
-        </v-layout>
-    </v-card>
+            <v-spacer></v-spacer>
+
+            <v-btn icon="mdi-magnify" variant="text"></v-btn>
+
+            <v-btn icon="mdi-filter" variant="text"></v-btn>
+
+            <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
+        </v-app-bar>
+
+        <v-navigation-drawer v-model="drawer" location="left" temporary>
+            <template v-slot:prepend>
+                <v-list-item lines="two" prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
+                    subtitle="Logged in" title="Jane Smith"></v-list-item>
+            </template>
+            <v-divider></v-divider>
+            <v-list density="compact" nav>
+                <v-list-item prepend-icon="mdi-home-city" title="Home" value="home" to="/" RouterLink></v-list-item>
+                <v-list-item prepend-icon="mdi-account" title="My Account" value="account" to="/about"
+                    RouterLink></v-list-item>
+                <v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
+            </v-list>
+            <v-list :items="items"></v-list>
+        </v-navigation-drawer>
+    </div>
 </template>
-<script>
-
-export default {
-    data() {
-        return {
-            drawer: null,
-        }
-    },
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+interface Item {
+    title: string;
+    value: string;
 }
+const items: Item[] = [
+    { title: 'Foo', value: 'foo' },
+    { title: 'Bar', value: 'bar' },
+    { title: 'fizz', value: 'fizz' },
+    { title: 'buzz', value: 'buzz' }
+];
+
+const drawer = ref(false);
+const group = ref<string | null>(null);
+
+const closeDrawer = () => {
+    drawer.value = false;
+};
+
+watch(group, (val, oldVal) => {
+    if (val !== oldVal) {
+        drawer.value = false;
+    }
+});
 </script>
