@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import mainVue from '../layouts/main.vue'
+import DefaultLayoutVue from '@/layouts/DefaultLayout.vue'
+import BlankLayoutVue from '@/layouts/BlankLayout.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: HomeView,
     meta: {
-      layout: mainVue
+      layout: DefaultLayoutVue
     }
   },
   {
@@ -16,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'about',
     component: () => import('../views/AboutView.vue'),
     meta: {
-      layout: mainVue
+      layout: BlankLayoutVue
     }
   }
 ]
