@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '../components/HelloWorld.vue'
 import DrawerNavegation from '../components/DrawerNavegation.vue'
+import Footer from '../components/Footer.vue'
 </script>
 <template>
   <v-app>
@@ -9,6 +10,7 @@ import DrawerNavegation from '../components/DrawerNavegation.vue'
     <v-main>
       <RouterView />
     </v-main>
+    <Footer/>
   </v-app>
 </template>
 

@@ -2,7 +2,7 @@
     <div>
         <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
         <v-app-bar color="primary" prominent>
-            <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon variant="text" @click.stop="computedDrawer = !computedDrawer"></v-app-bar-nav-icon>
 
             <v-toolbar-title>My files</v-toolbar-title>
 
@@ -15,7 +15,7 @@
             <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
         </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" location="left" temporary>
+        <v-navigation-drawer v-model="computedDrawer" location="left" temporary>
             <template v-slot:prepend>
                 <v-list-item lines="two" prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
                     subtitle="Logged in" title="Jane Smith"></v-list-item>
@@ -32,7 +32,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import  { useDrawerNavegationStore } from '@/stores/drawerNavegation';
+const drawerNavegation = useDrawerNavegationStore();
+import { ref, watch, computed } from 'vue';
 interface Item {
     title: string;
     value: string;
@@ -44,16 +46,12 @@ const items: Item[] = [
     { title: 'buzz', value: 'buzz' }
 ];
 
-const drawer = ref(false);
-const group = ref<string | null>(null);
-
-const closeDrawer = () => {
-    drawer.value = false;
-};
-
-watch(group, (val, oldVal) => {
-    if (val !== oldVal) {
-        drawer.value = false;
+const computedDrawer = computed({
+    get(){
+        return drawerNavegation.drawer
+    },
+    set(newValue) {
+        drawerNavegation.actionDrawer(newValue)
     }
-});
+})
 </script>
