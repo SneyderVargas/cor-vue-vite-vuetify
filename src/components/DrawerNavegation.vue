@@ -8,7 +8,7 @@ interface Item {
     value: string;
 }
 const items: Item[] = [
-    { title: 'Foo', value: 'foo' },
+    { title: 'Foos', value: 'foos' },
     { title: 'Bar', value: 'bar' },
     { title: 'fizz', value: 'fizz' },
     { title: 'buzz', value: 'buzz' }

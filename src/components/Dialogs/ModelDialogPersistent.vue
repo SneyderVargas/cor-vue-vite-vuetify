@@ -6,13 +6,23 @@ import { ref, watch, computed } from 'vue';
 
 const computedActiveDialog = computed({
     get(){
-        return drawerNavegation.activeDialog
+        return drawerNavegation.Dialog.active
     },
-    set(newVal){
-        drawerNavegation.actionActiveDialog(newVal)
+    set(newVal: boolean){
+        drawerNavegation.actionActiveDialog(newVal, "","","")
     }
 })
 
+const computedDataDialog = computed({
+    get(){
+        return drawerNavegation.Dialog
+    },
+    
+    set () {
+        
+    }
+    
+})
 // export default {
 //     data() {
 //         return {
@@ -23,21 +33,21 @@ const computedActiveDialog = computed({
 </script>
 <template>
     <div class="text-center pa-4">
-        <v-dialog v-model="computedActiveDialog" max-width="400" persistent>
-
-            <v-card prepend-icon="mdi-map-marker"
-                text="Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running."
-                title="Use Google's location service?">
+        <v-dialog  v-model="computedActiveDialog" max-width="400" persistent>
+            <!-- mdi-map-marker -->
+            <v-card :prepend-icon="computedDataDialog.icon"
+                :text="computedDataDialog.text"
+                :title=computedDataDialog.text_title>
 
                 <template v-slot:actions>
                     <v-spacer></v-spacer>
 
-                    <v-btn @click="computedActiveDialog = !computedActiveDialog">
+                    <!-- <v-btn @click="computedActiveDialog = !computedActiveDialog">
                         Disagree
-                    </v-btn>
+                    </v-btn> -->
 
                     <v-btn @click="computedActiveDialog = !computedActiveDialog">
-                        Agree
+                        Ok
                     </v-btn>
                 </template>
             </v-card>
