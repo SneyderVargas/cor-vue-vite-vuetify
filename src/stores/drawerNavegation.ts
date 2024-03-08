@@ -10,18 +10,26 @@ export const useDrawerNavegationStore = defineStore('drawerNavegation',{
             active: false,
             text_title: "",
             text: "",
-            icon: ""
+            type: "" // success, info, warning, error
+        },
+        Progress: {
+            active: false,
+            color: "", // primary,  red, purple, green, amber
         }
     }),
     actions: {
         actionDrawer(val: boolean){
             this.drawer = val
         },
-        actionActiveDialog(val: boolean, title: string, text: string, icon: string){
+        actionActiveDialog(val: boolean, title: string, text: string, type: string){
             this.Dialog.active = val
             this.Dialog.text_title = title
             this.Dialog.text = text
-            this.Dialog.icon = icon
+            this.Dialog.type = type
+        },
+        actionActiveProgress(val: boolean, color: string){
+            this.Progress.active = val
+            this.Progress.color = color
         }
     }
 })

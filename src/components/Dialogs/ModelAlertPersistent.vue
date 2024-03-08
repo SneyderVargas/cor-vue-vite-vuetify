@@ -1,27 +1,25 @@
-
 <script setup lang="ts">
-import  { useDrawerNavegationStore } from '@/stores/drawerNavegation';
+import { useDrawerNavegationStore } from '@/stores/drawerNavegation';
 const drawerNavegation = useDrawerNavegationStore();
 import { ref, watch, computed } from 'vue';
 
 const computedActiveDialog = computed({
-    get(){
+    get() {
         return drawerNavegation.Dialog.active
     },
-    set(newVal: boolean){
-        drawerNavegation.actionActiveDialog(newVal, "","","")
+    set(newVal: boolean) {
+        drawerNavegation.actionActiveDialog(newVal, "", "", "")
     }
 })
-
 const computedDataDialog = computed({
-    get(){
+    get() {
         return drawerNavegation.Dialog
     },
-    
-    set () {
-        
+
+    set() {
+
     }
-    
+
 })
 // export default {
 //     data() {
@@ -33,24 +31,26 @@ const computedDataDialog = computed({
 </script>
 <template>
     <div class="text-center pa-4">
-        <v-dialog  v-model="computedActiveDialog" max-width="400" persistent>
+        <v-dialog v-model="computedActiveDialog" max-width="400" persistent>
+            <v-alert
+            :text="computedDataDialog.text"
+            :title=computedDataDialog.text_title 
+            :type="computedDataDialog.type">
+            </v-alert>
+            <v-btn @click="computedActiveDialog = !computedActiveDialog">
+                Ok
+            </v-btn>
             <!-- mdi-map-marker -->
-            <v-card :prepend-icon="computedDataDialog.icon"
-                :text="computedDataDialog.text"
+            <!-- <v-card :prepend-icon="computedDataDialog.icon" :text="computedDataDialog.text"
                 :title=computedDataDialog.text_title>
-
                 <template v-slot:actions>
                     <v-spacer></v-spacer>
-
-                    <!-- <v-btn @click="computedActiveDialog = !computedActiveDialog">
-                        Disagree
-                    </v-btn> -->
-
                     <v-btn @click="computedActiveDialog = !computedActiveDialog">
-                        Ok
+                        Disagree
                     </v-btn>
+
                 </template>
-            </v-card>
+            </v-card> -->
         </v-dialog>
     </div>
 </template>

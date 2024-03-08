@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ModelDialogPersistent from '@/components/Dialogs/ModelDialogPersistent.vue'
+import ModelAlertPersistent from '@/components/Dialogs/ModelAlertPersistent.vue'
+import ModelProgress from '@/components/Dialogs/ModelProgress.vue'
 import  { useDrawerNavegationStore } from '@/stores/drawerNavegation';
 const drawerNavegation = useDrawerNavegationStore();
 import { ref, watch, computed } from 'vue';
@@ -54,6 +55,7 @@ const computedDrawer = computed({
             </v-list>
             <v-list :items="items"></v-list>
         </v-navigation-drawer>
-        <ModelDialogPersistent />
+        <ModelAlertPersistent />
+        <ModelProgress />
     </div>
 </template>
