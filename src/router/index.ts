@@ -20,12 +20,23 @@ const routes: Array<RouteRecordRaw> = [
       layout: DefaultLayoutVue
       // layout: BlankLayoutVue
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      layout: DefaultLayoutVue
+      // layout: BlankLayoutVue
+    }
   }
 ]
 const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+
 
 export default router
 // const router = createRouter({
