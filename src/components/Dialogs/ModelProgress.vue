@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useDrawerNavegationStore } from '@/stores/drawerNavegation';
-const drawerNavegation = useDrawerNavegationStore();
+import { useModelProgressStore } from '@/stores/modelProgress';
+const modelProgress = useModelProgressStore();
 import { ref, watch, computed } from 'vue';
 
 const computedActiveDialog = computed({
     get() {
-        return drawerNavegation.Progress.active
+        return modelProgress.Progress.active
     },
     set(newVal: boolean) {
-        drawerNavegation.actionActiveProgress(newVal, "", "")
+        modelProgress.actionActiveProgress(newVal, "")
     }
 })
 const computedDataDialog = computed({
     get() {
-        return drawerNavegation.Progress
+        return modelProgress.Progress
     },
 
     set() {

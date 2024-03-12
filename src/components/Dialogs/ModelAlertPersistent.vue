@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useDrawerNavegationStore } from '@/stores/drawerNavegation';
-const drawerNavegation = useDrawerNavegationStore();
+import { useModelAlertPersistentStore } from '@/stores/modelAlertPersistent';
+const modelAlertPersistent = useModelAlertPersistentStore();
 import { ref, watch, computed } from 'vue';
 
 const computedActiveDialog = computed({
     get() {
-        return drawerNavegation.Dialog.active
+        return modelAlertPersistent.Dialog.active
     },
     set(newVal: boolean) {
-        drawerNavegation.actionActiveDialog(newVal, "", "", "")
+        modelAlertPersistent.actionActiveDialog(newVal, "", "", "")
     }
 })
 const computedDataDialog = computed({
     get() {
-        return drawerNavegation.Dialog
+        return modelAlertPersistent.Dialog
     },
 
     set() {

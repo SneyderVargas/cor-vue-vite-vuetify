@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 
-export const useDrawerNavegationStore = defineStore('drawerNavegation',{
+export const useMainStore = defineStore('main',{
 
     state: () => ({
         // Navegation Drawer
         drawer: false,
+        loginState: false,
+        tokenValidate: false,
+        
     }),
     actions: {
         actionDrawer(val: boolean){
