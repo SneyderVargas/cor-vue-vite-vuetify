@@ -7,10 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    copy: typeof import('./src/components/Dialogs/ModelDialogPersistent copy.vue')['default']
+    copy: typeof import('./src/components/DrawerNavegation copy.vue')['default']
     DrawerNavegation: typeof import('./src/components/DrawerNavegation.vue')['default']
+    DrawerNavegationNotLogin: typeof import('./src/components/DrawerNavegationNotLogin.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
-    Footter: typeof import('./src/components/Footter.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -18,7 +18,6 @@ declare module 'vue' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     ModelAlertPersistent: typeof import('./src/components/Dialogs/ModelAlertPersistent.vue')['default']
-    ModelDialogPersistent: typeof import('./src/components/Dialogs/ModelDialogPersistent.vue')['default']
     ModelProgress: typeof import('./src/components/Dialogs/ModelProgress.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

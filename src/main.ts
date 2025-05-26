@@ -17,17 +17,17 @@ registerPlugins(app)
 
 
 app.use(createPinia())
-const mainStore = useMainStore()
+// const mainStore = useMainStore()
 
-router.beforeEach(async (to, from) => {
-    const store = mainStore
-    if (to.name != 'login' && to.name != 'register') {
-        var auth = store.loginState
-        if (!auth) {
-            return { name: 'login' }
-        }
-    }
-})
+// router.beforeEach(async (to, from) => {
+//     const store = mainStore
+//     if (to.name != 'login' && to.name != 'register') {
+//         var auth = store.loginState
+//         if (!auth) {
+//             return { name: 'login' }
+//         }
+//     }
+// })
 app.use(router)
 
 
