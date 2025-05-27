@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import DefaultLayoutVue from '@/layouts/DefaultLayout.vue'
 import DefaultNotLoginLayout from '@/layouts/DefaultNotLoginLayout.vue'
 import BlankLayoutVue from '@/layouts/BlankLayout.vue'
+// import { useMainStore } from '@/stores/main'
+// const mainStore = useMainStore()
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +12,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'dashboard',
     component: HomeView,
     meta: {
-      layout: DefaultLayoutVue
+      layout: DefaultLayoutVue,
+      requiereAuth: true
     }
   },
   {
@@ -32,6 +35,7 @@ const routes: Array<RouteRecordRaw> = [
     }
   }
 ]
+
 const router = createRouter({
   history: createWebHistory(),
   routes
@@ -39,7 +43,35 @@ const router = createRouter({
 
 
 
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = /* Lógica para verificar si el usuario está autenticado (ej. de tu store de Pinia) */ true; // Reemplaza con tu lógica real
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next({ name: 'login' }); // Redirige al login si requiere auth y no está autenticado
+  } else {
+    next(); // Continúa normalmente
+  }
+});
+
 export default router
+
+
+
+// 
+
+// router.beforeEach(async (to, from) => {
+//     const store = mainStore
+//     if (to.name != 'login' && to.name != 'register') {
+//         var auth = store.loginState
+//         if (!auth) {
+//             return { name: 'login' }
+//         }
+//     }
+// })
+
+
+
+
+
 // const router = createRouter({
 //   history: createWebHistory(import.meta.env.BASE_URL),
 //   routes: [
